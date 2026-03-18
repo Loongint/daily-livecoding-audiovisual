@@ -1,0 +1,46 @@
+{
+  "audio_to_visual": [
+    {
+      "osc": "/audio/bass_energy",
+      "uniform": "u_humid_drone",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/bass_energy",
+      "uniform": "u_low_pulse",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/breath",
+      "uniform": "u_breath_amp",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/breath",
+      "uniform": "u_mist_density",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/breath",
+      "uniform": "u_veil_shimmer",
+      "type": "float"
+    }
+  ],
+  "visual_to_audio": [
+    {
+      "feature": "brightness",
+      "osc": "/visual/brightness",
+      "sc_var": "~brightness"
+    },
+    {
+      "feature": "hue",
+      "osc": "/visual/hue",
+      "sc_var": "~hue"
+    },
+    {
+      "feature": "motion",
+      "osc": "/visual/motion",
+      "sc_var": "~motion"
+    }
+  ]
+}
