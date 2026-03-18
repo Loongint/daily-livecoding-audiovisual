@@ -1,101 +1,114 @@
 SynthDef(\moonDrone, {
-    arg freq = 55, amp = 0.18, gate = 1;
-    var sig, env, lfo, brightness, motion;
-    brightness = \brightness.kr(0.5);
-    motion = \motion.kr(0.5);
-    lfo = SinOsc.kr(0.03 + (motion * 0.04), 0, 0.3, 1.0);
-    env = EnvGen.kr(Env.asr(8, 1, 12), gate, doneAction: 2);
-    sig = Mix([
-        SinOsc.ar(freq * (1.0 + (brightness * 0.02)), 0, 0.5),
-        SinOsc.ar(freq * 1.5 * (1.0 + (motion * 0.01)), 0, 0.2),
-        SinOsc.ar(freq * 2.0, 0, 0.1),
-        LFNoise2.ar(0.5).range(-0.003, 0.003) + SinOsc.ar(freq * 0.5, 0, 0.15)
-    ]);
-    sig = sig * lfo * env * amp;
-    sig = LPF.ar(sig, 400 + (brightness * 200));
-    sig = sig * 0.7;
-    SendReply.kr(Impulse.kr(30), '/audio/bass_energy', Amplitude.kr(sig));
-    Out.ar(0, sig ! 2);
+    arg freq = 55, amp = 0.18, atk = 8.0, rel = 12.0, gate = 1;
+    var brightness = \brightness.kr(0.5);
+    var motion = \motion.kr(0.5);
+    var hue = \hue.kr(0.5);
+    var env = EnvGen.kr(Env.asr(atk, 1.0, rel), gate, doneAction: 2);
+    var baseFreq = freq * (1.0 + (brightness * 0.08));
+    var swell = SinOsc.kr(0.04 + (motion * 0.02)).range(0.85, 1.0);
+    var f1 = SinOsc.ar(baseFreq) * 0.5;
+    var f2 = SinOsc.ar(baseFreq * 1.5005 + LFNoise2.kr(0.05).range(-0.3, 0.3)) * 0.25;
+    var f3 = SinOsc.ar(baseFreq * 2.002 + LFNoise2.kr(0.07).range(-0.2, 0.2)) * 0.12;
+    var f4 = SinOsc.ar(baseFreq * 3.003) * 0.06;
+    var sig = (f1 + f2 + f3 + f4) * swell * env * amp;
+    var sigL = sig + (DelayC.ar(sig, 0.05, LFNoise2.kr(0.03).range(0.01, 0.04)) * 0.3);
+    var sigR = sig + (DelayC.ar(sig, 0.05, LFNoise2.kr(0.025).range(0.01, 0.04)) * 0.3);
+    var stereo = [sigL, sigR] * 0.7;
+    SendReply.kr(Impulse.kr(30), '/audio/bass_energy', Amplitude.kr(sigL));
+    Out.ar(0, stereo);
 }).add;
 
-SynthDef(\veilWash, {
-    arg amp = 0.09, gate = 1;
-    var sig, env, noise, lfo, brightness, hue;
-    brightness = \brightness.kr(0.5);
-    hue = \hue.kr(0.5);
-    env = EnvGen.kr(Env.asr(14, 1, 18), gate, doneAction: 2);
-    lfo = SinOsc.kr(0.02 + (hue * 0.03), 0, 0.4, 0.6);
-    noise = LPF.ar(GrayNoise.ar(1), 600 + (brightness * 400));
-    noise = HPF.ar(noise, 80);
-    sig = noise * lfo * env * amp;
-    sig = FreeVerb.ar(sig, 0.92, 0.98, 0.4);
-    sig = sig * 0.6;
+SynthDef(\gauzeTexture, {
+    arg amp = 0.07, atk = 10.0, rel = 14.0, gate = 1;
+    var brightness = \brightness.kr(0.5);
+    var motion = \motion.kr(0.5);
+    var hue = \hue.kr(0.5);
+    var env = EnvGen.kr(Env.asr(atk, 1.0, rel), gate, doneAction: 2);
+    var breathRate = 0.05 + (motion * 0.03);
+    var breath = SinOsc.kr(breathRate).range(0.3, 1.0);
+    var noise = LPF.ar(GrayNoise.ar(1.0), 800 + (brightness * 400));
+    var noiseHP = HPF.ar(noise, 180);
+    var shimmer = SinOsc.ar(
+        [220.5, 221.3, 329.8, 330.4, 440.2, 440.9],
+        LFNoise2.kr(Array.fill(6, { rrand(0.02, 0.08) })).range(0, 2pi)
+    ).mean;
+    var sig = (noiseHP * 0.4 + shimmer * 0.6) * breath * env * amp;
+    var wet = FreeVerb.ar(sig, 0.85, 0.92, 0.4);
+    var out = [
+        wet + (DelayC.ar(wet, 0.3, 0.17) * 0.2),
+        wet + (DelayC.ar(wet, 0.3, 0.23) * 0.2)
+    ] * 0.65;
     SendReply.kr(Impulse.kr(30), '/audio/mid_energy', Amplitude.kr(sig));
-    Out.ar(0, sig ! 2);
+    Out.ar(0, out);
 }).add;
 
-SynthDef(\lunarGlint, {
-    arg freq = 880, amp = 0.06, gate = 1;
-    var sig, env, lfo, brightness, motion;
-    brightness = \brightness.kr(0.5);
-    motion = \motion.kr(0.5);
-    env = EnvGen.kr(Env.asr(6, 1, 20), gate, doneAction: 2);
-    lfo = SinOsc.kr(0.015 + (motion * 0.02), 0, 0.35, 0.65);
-    sig = Mix([
-        SinOsc.ar(freq * (1.0 + (brightness * 0.015)), 0, 0.4),
-        SinOsc.ar(freq * 1.001, 0, 0.3),
-        SinOsc.ar(freq * 2.0 * (1.0 + (motion * 0.008)), 0, 0.15),
-        SinOsc.ar(freq * 3.0, 0, 0.06)
-    ]);
-    sig = sig * lfo * env * amp;
-    sig = LPF.ar(sig, 2000 + (brightness * 500));
-    sig = FreeVerb.ar(sig, 0.88, 0.99, 0.5);
-    sig = sig * 0.55;
-    SendReply.kr(Impulse.kr(30), '/audio/high_energy', Amplitude.kr(sig));
-    Out.ar(0, sig ! 2);
+SynthDef(\moonBreath, {
+    arg freq = 220, amp = 0.09, atk = 6.0, rel = 10.0, gate = 1;
+    var brightness = \brightness.kr(0.5);
+    var motion = \motion.kr(0.5);
+    var hue = \hue.kr(0.5);
+    var env = EnvGen.kr(Env.asr(atk, 1.0, rel), gate, doneAction: 2);
+    var targetFreq = freq * (1.0 + (hue * 0.15));
+    var vibrato = SinOsc.kr(0.12 + (motion * 0.05)).range(-0.008, 0.008);
+    var osc1 = SinOsc.ar(targetFreq * (1 + vibrato));
+    var osc2 = SinOsc.ar(targetFreq * 1.0008 * (1 + vibrato * 0.7)) * 0.6;
+    var osc3 = SinOsc.ar(targetFreq * 2.001) * 0.2;
+    var sig = (osc1 + osc2 + osc3) * 0.33;
+    var filtered = RLPF.ar(sig, 600 + (brightness * 300), 0.5);
+    var swellEnv = SinOsc.kr(0.035 + (motion * 0.015)).range(0.5, 1.0);
+    var filteredSwell = filtered * swellEnv * env * amp;
+    var wet = GVerb.ar(filteredSwell, 60, 8.0, 0.3, 0.5, 15, 0.5, 0.5, 0.3);
+    var out = [
+        wet[0] + (filteredSwell * 0.3),
+        wet[1] + (filteredSwell * 0.3)
+    ] * 0.6;
+    SendReply.kr(Impulse.kr(30), '/audio/high_energy', Amplitude.kr(filteredSwell));
+    Out.ar(0, out);
 }).add;
 
 fork {
-    inf.do { |i|
-        var phase = i % 6;
+    var droneFreqs = [55, 55, 41.2, 55, 61.7];
+    var breathFreqs = [220, 165, 220, 246.9, 220];
+    var droneIdx = 0;
+    var breathIdx = 0;
 
-        if (phase == 0) {
-            ~moonDrone.free;
-            ~moonDrone = Synth(\moonDrone, [\freq, 46, \amp, 0.15]);
-            18.0.wait;
-        };
+    ~moonDrone = Synth(\moonDrone, [\freq, 55, \amp, 0.16]);
+    ~gauzeTexture = Synth(\gauzeTexture, [\amp, 0.065]);
+    3.0.wait;
+    ~moonBreath = Synth(\moonBreath, [\freq, 220, \amp, 0.08]);
 
-        if (phase == 1) {
-            ~veilWash.free;
-            ~veilWash = Synth(\veilWash, [\amp, 0.08]);
-            22.0.wait;
-        };
+    inf.do {
+        var waitTime = rrand(18.0, 28.0);
+        waitTime.wait;
 
-        if (phase == 2) {
-            ~lunarGlint.free;
-            ~lunarGlint = Synth(\lunarGlint, [\freq, 660, \amp, 0.055]);
-            16.0.wait;
-        };
+        droneIdx = (droneIdx + 1) % droneFreqs.size;
+        breathIdx = (breathIdx + 1) % breathFreqs.size;
 
-        if (phase == 3) {
-            ~moonDrone.free;
-            ~moonDrone = Synth(\moonDrone, [\freq, 55, \amp, 0.13]);
-            20.0.wait;
-        };
+        ~moonDrone.set(\gate, 0);
+        2.0.wait;
+        ~moonDrone = Synth(\moonDrone, [
+            \freq, droneFreqs[droneIdx],
+            \amp, rrand(0.13, 0.19),
+            \atk, rrand(7.0, 11.0)
+        ]);
 
-        if (phase == 4) {
-            ~veilWash.free;
-            ~veilWash = Synth(\veilWash, [\amp, 0.07]);
-            ~lunarGlint.free;
-            ~lunarGlint = Synth(\lunarGlint, [\freq, 880, \amp, 0.05]);
-            24.0.wait;
-        };
+        rrand(4.0, 8.0).wait;
 
-        if (phase == 5) {
-            ~moonDrone.free;
-            ~veilWash.free;
-            ~lunarGlint.free;
-            6.0.wait;
-        };
+        ~moonBreath.set(\gate, 0);
+        2.0.wait;
+        ~moonBreath = Synth(\moonBreath, [
+            \freq, breathFreqs[breathIdx],
+            \amp, rrand(0.07, 0.11),
+            \atk, rrand(5.0, 9.0)
+        ]);
+
+        rrand(6.0, 12.0).wait;
+
+        ~gauzeTexture.set(\gate, 0);
+        2.0.wait;
+        ~gauzeTexture = Synth(\gauzeTexture, [
+            \amp, rrand(0.055, 0.08),
+            \atk, rrand(9.0, 13.0)
+        ]);
     };
 };

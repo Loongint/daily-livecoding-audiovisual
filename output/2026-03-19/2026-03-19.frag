@@ -5,8 +5,7 @@ uniform vec2 u_resolution;
 uniform float u_bass_energy;
 uniform float u_shimmer;
 uniform float u_pulse_amp;
-uniform float u_spectral_brightness;
-uniform float u_drone_depth;
+uniform float u_drone_swell;
 
 out vec4 fragColor;
 
@@ -42,64 +41,66 @@ void main() {
     vec2 uvA = (uv - 0.5) * aspect;
 
     float t = u_time * 0.08;
-    float slowT = u_time * 0.03;
-
-    vec2 cloudUV1 = uv * vec2(2.2, 1.4) + vec2(t * 0.4, slowT * 0.2);
-    vec2 cloudUV2 = uv * vec2(1.5, 2.0) + vec2(-t * 0.25, slowT * 0.35);
-    float cloud1 = fbm(cloudUV1);
-    float cloud2 = fbm(cloudUV2);
-    float cloudMix = cloud1 * 0.6 + cloud2 * 0.4;
-    float cloudDensity = smoothstep(0.30, 0.75, cloudMix);
+    float swell = 0.5 + 0.5 * sin(u_time * 0.3) + u_drone_swell * 0.3;
+    float pulse = 1.0 + u_pulse_amp * 0.15 * sin(u_time * 1.1);
 
     vec2 moonPos = vec2(0.0, 0.12);
+    float moonPhase = 0.043345750084647194;
+    float moonR = 0.07 * pulse;
     float moonDist = length(uvA - moonPos);
-    float moonRadius = 0.055;
-    float moonDisc = smoothstep(moonRadius, moonRadius - 0.008, moonDist);
 
-    float glowRadius = 0.28 + u_pulse_amp * 0.06;
-    float glow = exp(-moonDist * moonDist / (glowRadius * glowRadius)) * 0.85;
-    float halo = exp(-moonDist * moonDist / (0.08 * 0.08)) * 0.5;
+    float crescent = 0.0;
+    if (moonDist < moonR * 1.8) {
+        float d1 = length(uvA - moonPos);
+        float d2 = length(uvA - moonPos - vec2(moonR * 1.3 * (1.0 - moonPhase * 2.0), 0.0));
+        float lit = smoothstep(moonR, moonR * 0.85, d1);
+        float shadow = smoothstep(moonR * 0.95, moonR * 0.75, d2);
+        crescent = lit * (1.0 - shadow * 0.92);
+    }
 
-    float cloudAtMoon = fbm(vec2(moonPos.x / aspect.x + 0.5, moonPos.y + 0.5) * vec2(2.2, 1.4) + vec2(t * 0.4, slowT * 0.2));
-    float veilFactor = smoothstep(0.35, 0.65, cloudAtMoon);
-    float moonVisible = 1.0 - veilFactor * 0.75;
+    float glow = exp(-moonDist * moonDist * 18.0) * 0.7 * swell;
+    float halo = exp(-moonDist * moonDist * 4.5) * 0.35 * swell;
 
-    float breathe = 0.92 + 0.08 * sin(u_time * 0.4 + u_drone_depth * 1.5);
-    float shimmerPulse = 0.85 + 0.15 * sin(u_time * 1.2) * u_shimmer;
+    vec2 cloudUV1 = uv * vec2(2.2, 1.4) + vec2(t * 0.6, t * 0.2);
+    vec2 cloudUV2 = uv * vec2(1.5, 2.0) + vec2(-t * 0.4, t * 0.35);
+    float cloud1 = fbm(cloudUV1);
+    float cloud2 = fbm(cloudUV2);
+    float clouds = cloud1 * 0.6 + cloud2 * 0.4;
+    clouds = smoothstep(0.35, 0.75, clouds);
 
-    vec3 skyLow  = vec3(0.38, 0.44, 0.42);
-    vec3 skyHigh = vec3(0.52, 0.60, 0.58);
+    float veilUV_x = uv.x * 3.5 + t * 0.3;
+    float veilUV_y = uv.y * 2.0 + t * 0.15;
+    float veil = fbm(vec2(veilUV_x, veilUV_y));
+    veil = smoothstep(0.3, 0.7, veil) * 0.5;
+
+    float moonProximity = 1.0 - smoothstep(0.0, 0.45, moonDist);
+    float cloudLit = clouds * (0.4 + moonProximity * 0.6) + veil * 0.3;
+
+    vec3 skyLow  = vec3(0.28, 0.34, 0.32);
+    vec3 skyHigh = vec3(0.42, 0.50, 0.46);
     vec3 sky = mix(skyLow, skyHigh, uv.y * 0.8 + 0.1);
 
-    vec3 cloudColor = vec3(0.62, 0.68, 0.65);
-    vec3 cloudLit   = vec3(0.78, 0.84, 0.80);
-    float cloudLitFactor = smoothstep(0.0, 0.5, glow * moonVisible);
-    vec3 cloudFinal = mix(cloudColor, cloudLit, cloudLitFactor);
-
-    vec3 moonColor = vec3(0.92, 0.95, 0.90);
-    vec3 glowColor = vec3(0.70, 0.80, 0.76);
+    vec3 cloudColor = vec3(0.55, 0.62, 0.58) + vec3(0.12, 0.14, 0.10) * moonProximity * swell;
+    vec3 moonColor  = vec3(0.88, 0.92, 0.82);
+    vec3 glowColor  = vec3(0.65, 0.78, 0.65);
 
     vec3 col = sky;
-    col = mix(col, cloudFinal, cloudDensity * 0.72);
-    col += glowColor * glow * moonVisible * breathe;
-    col += glowColor * halo * moonVisible * 0.4;
-    col = mix(col, moonColor, moonDisc * moonVisible * shimmerPulse);
+    col = mix(col, cloudColor, cloudLit * 0.75);
+    col += glowColor * halo;
+    col += glowColor * glow * 0.5;
+    col = mix(col, moonColor, crescent * 0.95);
 
-    float starNoise = hash(floor(uv * 180.0));
-    float starMask = pow(starNoise, 14.0);
-    float starTwinkle = 0.5 + 0.5 * sin(u_time * 2.5 + starNoise * 40.0);
-    float starVis = starMask * starTwinkle * (1.0 - cloudDensity * 0.9) * 0.9;
-    col += vec3(0.85, 0.92, 0.88) * starVis;
+    float shimmerNoise = noise(uv * 120.0 + vec2(u_time * 0.5, 0.0));
+    float stars = pow(shimmerNoise, 9.0) * (1.0 - clouds * 1.5) * (1.0 - moonProximity) * 0.5 * u_shimmer;
+    col += vec3(0.8, 0.9, 0.85) * stars;
 
-    float spectralLift = u_spectral_brightness * 0.18;
-    col += vec3(0.55, 0.65, 0.60) * spectralLift * (1.0 - cloudDensity * 0.5);
+    float breathe = 0.92 + 0.08 * sin(u_time * 0.25 + fbm(uv * 1.5) * 2.0);
+    col *= breathe;
 
-    float bassWarm = u_bass_energy * 0.12;
-    col += vec3(bassWarm * 0.4, bassWarm * 0.2, bassWarm * 0.1) * cloudDensity;
+    float bass_lift = u_bass_energy * 0.08;
+    col += vec3(0.04, 0.06, 0.05) * bass_lift;
 
-    float vignette = 1.0 - 0.28 * dot(uvA * vec2(0.9, 1.1), uvA * vec2(0.9, 1.1));
-    col *= max(vignette, 0.72);
+    col = pow(clamp(col, 0.0, 1.0), vec3(0.88));
 
-    col = clamp(col, 0.0, 1.0);
     fragColor = vec4(col, 1.0);
 }
