@@ -1,0 +1,41 @@
+{
+  "audio_to_visual": [
+    {
+      "osc": "/audio/bass_energy",
+      "uniform": "u_drone_swell",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/breath",
+      "uniform": "u_breath_amp",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/shimmer",
+      "uniform": "u_moon_shimmer",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/veil_density",
+      "uniform": "u_veil_density",
+      "type": "float"
+    }
+  ],
+  "visual_to_audio": [
+    {
+      "feature": "brightness",
+      "osc": "/visual/brightness",
+      "sc_var": "~moonDrone"
+    },
+    {
+      "feature": "motion",
+      "osc": "/visual/motion",
+      "sc_var": "~cloudVeil"
+    },
+    {
+      "feature": "hue",
+      "osc": "/visual/hue",
+      "sc_var": "~moonGlint"
+    }
+  ]
+}
