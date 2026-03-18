@@ -5,7 +5,7 @@ uniform vec2 u_resolution;
 uniform float u_bass_energy;
 uniform float u_shimmer;
 uniform float u_pulse_amp;
-uniform float u_drone_swell;
+uniform float u_spectral_brightness;
 
 out vec4 fragColor;
 
@@ -35,70 +35,78 @@ float fbm(vec2 p) {
     return v;
 }
 
+vec3 ledgerLines(vec2 uv, float t) {
+    float lineY = fract(uv.y * 18.0 - t * 0.12);
+    float line = smoothstep(0.04, 0.0, abs(lineY - 0.5) - 0.44);
+    float erasure = fbm(uv * 3.0 + t * 0.05);
+    line *= smoothstep(0.3, 0.7, erasure);
+    float col = line * (0.55 + 0.35 * u_spectral_brightness);
+    return vec3(col * 0.6, col * 0.75, col * 0.9);
+}
+
+vec3 staticNoise(vec2 uv, float t) {
+    float s1 = hash(uv * 512.0 + t * 73.1);
+    float s2 = hash(uv * 256.0 - t * 41.3);
+    float s = mix(s1, s2, 0.5);
+    s = pow(s, 2.2);
+    float intensity = 0.28 + 0.18 * u_bass_energy;
+    return vec3(s * intensity * 0.7, s * intensity * 0.8, s * intensity);
+}
+
+vec3 pulsingForm(vec2 uv, float t) {
+    vec2 center = vec2(0.5, 0.5);
+    float dist = length(uv - center);
+    float pulse = 0.5 + 0.5 * sin(t * 1.8 + u_pulse_amp * 3.14);
+    float ring = exp(-pow(dist - 0.28 * pulse, 2.0) * 18.0);
+    float inner = exp(-dist * dist * 6.0) * 0.7;
+    float erasedPhase = fract(t * 0.07);
+    float erased = smoothstep(0.0, 0.4, erasedPhase) * smoothstep(1.0, 0.6, erasedPhase);
+    float form = (ring + inner) * erased;
+    vec3 cold = vec3(0.3, 0.55, 0.85);
+    vec3 hot = vec3(0.85, 0.4, 0.6);
+    return mix(cold, hot, u_shimmer) * form * (0.9 + 0.5 * u_pulse_amp);
+}
+
+vec3 breathingField(vec2 uv, float t) {
+    float f = fbm(uv * 2.5 + t * 0.08);
+    float f2 = fbm(uv * 4.0 - t * 0.13 + 1.7);
+    float field = f * f2;
+    float breathe = 0.55 + 0.45 * sin(t * 0.6);
+    vec3 tint = mix(
+        vec3(0.15, 0.25, 0.45),
+        vec3(0.45, 0.2, 0.55),
+        f2
+    );
+    return tint * field * breathe * (0.7 + 0.5 * u_spectral_brightness);
+}
+
+vec3 complianceGlyph(vec2 uv, float t) {
+    vec2 g = fract(uv * 6.0) - 0.5;
+    float cell = hash(floor(uv * 6.0) + floor(t * 0.4));
+    float appear = step(0.6, cell);
+    float stamp = smoothstep(0.45, 0.0, length(g)) * appear;
+    float fade = fract(t * 0.15 + cell);
+    stamp *= smoothstep(1.0, 0.5, fade);
+    return vec3(0.7, 0.6, 0.3) * stamp * 0.65;
+}
+
 void main() {
     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-    vec2 aspect = vec2(u_resolution.x / u_resolution.y, 1.0);
-    vec2 uvA = (uv - 0.5) * aspect;
+    float t = u_time;
 
-    float t = u_time * 0.08;
-    float swell = 0.5 + 0.5 * sin(u_time * 0.3) + u_drone_swell * 0.3;
-    float pulse = 1.0 + u_pulse_amp * 0.15 * sin(u_time * 1.1);
+    vec3 base = breathingField(uv, t);
+    vec3 ledger = ledgerLines(uv, t);
+    vec3 stat = staticNoise(uv, t);
+    vec3 form = pulsingForm(uv, t);
+    vec3 glyph = complianceGlyph(uv, t);
 
-    vec2 moonPos = vec2(0.0, 0.12);
-    float moonPhase = 0.043345750084647194;
-    float moonR = 0.07 * pulse;
-    float moonDist = length(uvA - moonPos);
+    vec3 col = base + ledger + stat * 0.6 + form + glyph;
 
-    float crescent = 0.0;
-    if (moonDist < moonR * 1.8) {
-        float d1 = length(uvA - moonPos);
-        float d2 = length(uvA - moonPos - vec2(moonR * 1.3 * (1.0 - moonPhase * 2.0), 0.0));
-        float lit = smoothstep(moonR, moonR * 0.85, d1);
-        float shadow = smoothstep(moonR * 0.95, moonR * 0.75, d2);
-        crescent = lit * (1.0 - shadow * 0.92);
-    }
+    float vignette = 1.0 - 0.45 * pow(length(uv - 0.5) * 1.6, 2.0);
+    col *= vignette;
 
-    float glow = exp(-moonDist * moonDist * 18.0) * 0.7 * swell;
-    float halo = exp(-moonDist * moonDist * 4.5) * 0.35 * swell;
-
-    vec2 cloudUV1 = uv * vec2(2.2, 1.4) + vec2(t * 0.6, t * 0.2);
-    vec2 cloudUV2 = uv * vec2(1.5, 2.0) + vec2(-t * 0.4, t * 0.35);
-    float cloud1 = fbm(cloudUV1);
-    float cloud2 = fbm(cloudUV2);
-    float clouds = cloud1 * 0.6 + cloud2 * 0.4;
-    clouds = smoothstep(0.35, 0.75, clouds);
-
-    float veilUV_x = uv.x * 3.5 + t * 0.3;
-    float veilUV_y = uv.y * 2.0 + t * 0.15;
-    float veil = fbm(vec2(veilUV_x, veilUV_y));
-    veil = smoothstep(0.3, 0.7, veil) * 0.5;
-
-    float moonProximity = 1.0 - smoothstep(0.0, 0.45, moonDist);
-    float cloudLit = clouds * (0.4 + moonProximity * 0.6) + veil * 0.3;
-
-    vec3 skyLow  = vec3(0.28, 0.34, 0.32);
-    vec3 skyHigh = vec3(0.42, 0.50, 0.46);
-    vec3 sky = mix(skyLow, skyHigh, uv.y * 0.8 + 0.1);
-
-    vec3 cloudColor = vec3(0.55, 0.62, 0.58) + vec3(0.12, 0.14, 0.10) * moonProximity * swell;
-    vec3 moonColor  = vec3(0.88, 0.92, 0.82);
-    vec3 glowColor  = vec3(0.65, 0.78, 0.65);
-
-    vec3 col = sky;
-    col = mix(col, cloudColor, cloudLit * 0.75);
-    col += glowColor * halo;
-    col += glowColor * glow * 0.5;
-    col = mix(col, moonColor, crescent * 0.95);
-
-    float shimmerNoise = noise(uv * 120.0 + vec2(u_time * 0.5, 0.0));
-    float stars = pow(shimmerNoise, 9.0) * (1.0 - clouds * 1.5) * (1.0 - moonProximity) * 0.5 * u_shimmer;
-    col += vec3(0.8, 0.9, 0.85) * stars;
-
-    float breathe = 0.92 + 0.08 * sin(u_time * 0.25 + fbm(uv * 1.5) * 2.0);
-    col *= breathe;
-
-    float bass_lift = u_bass_energy * 0.08;
-    col += vec3(0.04, 0.06, 0.05) * bass_lift;
+    float flicker = 0.88 + 0.12 * hash(vec2(t * 60.0, 0.5));
+    col *= flicker;
 
     col = pow(clamp(col, 0.0, 1.0), vec3(0.88));
 

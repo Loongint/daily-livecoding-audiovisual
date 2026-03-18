@@ -12,12 +12,12 @@
     },
     {
       "osc": "/audio/high_energy",
-      "uniform": "u_pulse_amp",
+      "uniform": "u_spectral_brightness",
       "type": "float"
     },
     {
       "osc": "/audio/bass_energy",
-      "uniform": "u_drone_swell",
+      "uniform": "u_pulse_amp",
       "type": "float"
     }
   ],
@@ -25,17 +25,17 @@
     {
       "feature": "brightness",
       "osc": "/visual/brightness",
-      "sc_var": "~moonDrone"
+      "sc_var": "~brightness"
     },
     {
       "feature": "motion",
       "osc": "/visual/motion",
-      "sc_var": "~gauzeTexture"
+      "sc_var": "~motion"
     },
     {
       "feature": "hue",
       "osc": "/visual/hue",
-      "sc_var": "~moonBreath"
+      "sc_var": "~hue"
     }
   ]
 }

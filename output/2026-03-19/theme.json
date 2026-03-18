@@ -1,11 +1,74 @@
 {
-  "chinese_title": "薄云遮月，新月初生于温湿之气",
-  "english_title": "New Moon Breathing Under Warm Clouds",
-  "theme_note": "Muted grey-green washes, humid stillness, low drone with slow swell, barely-there light diffusing through gauze",
-  "moon_phase": 0.043345750084647194,
+  "chinese_title": "默签",
+  "english_title": "Consent by Asphyxiation",
+  "theme_note": "A ledger pulses beneath static; forms comply before the signal arrives, already erased.",
+  "hexagram": {
+    "number": 13,
+    "chinese_name": "同人",
+    "pinyin": "tóng rén",
+    "english_name": "Fellowship",
+    "judgment_hint": "community, fire, openness"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 28.4,
+        "lon": 358.4
+      },
+      "Moon": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 27.6,
+        "lon": 357.64
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 8.7,
+        "lon": 338.66
+      },
+      "Venus": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 15.6,
+        "lon": 15.59
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 12.9,
+        "lon": 342.92
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 15.2,
+        "lon": 105.18
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 3.9,
+        "lon": 3.93
+      }
+    },
+    "moon_phase_pct": 0.0,
+    "moon_phase_label": "New Moon",
+    "aspects": [
+      "Sun conjunction Moon",
+      "Sun conjunction Saturn",
+      "Moon conjunction Saturn",
+      "Mercury conjunction Mars",
+      "Mercury trine Jupiter"
+    ]
+  },
   "weather": {
     "temp": 25.0,
     "humidity": 70.0,
     "condition": "cloudy"
-  }
+  },
+  "events": "A tremor held in place, mistaken for stillness.\n\nThe ledger tightens around the throat while the hand keeps signing.\n\nSomewhere a gate opens and closes in the same motion, letting through only what it consumes.\n\nThe sky rehearses its collapse in small towns first.\n\nA song plays from a burning room — everyone hums along, no one turns around.",
+  "context_felt": "A warm fog pressing bodies into one shape, all edges dissolving before they agree to.\n\nSomething trying to ignite inside waterlogged wood — a struck match hissing, then holding.\n\nThe gathering leans forward together, not yet sure if it's falling or beginning to run."
 }
