@@ -6,6 +6,7 @@ uniform float u_bass_energy;
 uniform float u_shimmer;
 uniform float u_pulse_amp;
 uniform float u_spectral_brightness;
+uniform float u_feedback_tension;
 
 out vec4 fragColor;
 
@@ -26,89 +27,82 @@ float noise(vec2 p) {
 
 float fbm(vec2 p) {
     float v = 0.0;
-    float a = 0.5;
+    float amp = 0.5;
     for (int i = 0; i < 5; i++) {
-        v += a * noise(p);
+        v += amp * noise(p);
         p = p * 2.1 + vec2(1.3, 0.7);
-        a *= 0.5;
+        amp *= 0.5;
     }
     return v;
 }
 
-vec3 ledgerLines(vec2 uv, float t) {
-    float lineY = fract(uv.y * 18.0 - t * 0.12);
-    float line = smoothstep(0.04, 0.0, abs(lineY - 0.5) - 0.44);
-    float erasure = fbm(uv * 3.0 + t * 0.05);
-    line *= smoothstep(0.3, 0.7, erasure);
-    float col = line * (0.55 + 0.35 * u_spectral_brightness);
-    return vec3(col * 0.6, col * 0.75, col * 0.9);
-}
-
-vec3 staticNoise(vec2 uv, float t) {
-    float s1 = hash(uv * 512.0 + t * 73.1);
-    float s2 = hash(uv * 256.0 - t * 41.3);
-    float s = mix(s1, s2, 0.5);
-    s = pow(s, 2.2);
-    float intensity = 0.28 + 0.18 * u_bass_energy;
-    return vec3(s * intensity * 0.7, s * intensity * 0.8, s * intensity);
-}
-
-vec3 pulsingForm(vec2 uv, float t) {
-    vec2 center = vec2(0.5, 0.5);
-    float dist = length(uv - center);
-    float pulse = 0.5 + 0.5 * sin(t * 1.8 + u_pulse_amp * 3.14);
-    float ring = exp(-pow(dist - 0.28 * pulse, 2.0) * 18.0);
-    float inner = exp(-dist * dist * 6.0) * 0.7;
-    float erasedPhase = fract(t * 0.07);
-    float erased = smoothstep(0.0, 0.4, erasedPhase) * smoothstep(1.0, 0.6, erasedPhase);
-    float form = (ring + inner) * erased;
-    vec3 cold = vec3(0.3, 0.55, 0.85);
-    vec3 hot = vec3(0.85, 0.4, 0.6);
-    return mix(cold, hot, u_shimmer) * form * (0.9 + 0.5 * u_pulse_amp);
-}
-
-vec3 breathingField(vec2 uv, float t) {
-    float f = fbm(uv * 2.5 + t * 0.08);
-    float f2 = fbm(uv * 4.0 - t * 0.13 + 1.7);
-    float field = f * f2;
-    float breathe = 0.55 + 0.45 * sin(t * 0.6);
-    vec3 tint = mix(
-        vec3(0.15, 0.25, 0.45),
-        vec3(0.45, 0.2, 0.55),
-        f2
-    );
-    return tint * field * breathe * (0.7 + 0.5 * u_spectral_brightness);
-}
-
-vec3 complianceGlyph(vec2 uv, float t) {
-    vec2 g = fract(uv * 6.0) - 0.5;
-    float cell = hash(floor(uv * 6.0) + floor(t * 0.4));
-    float appear = step(0.6, cell);
-    float stamp = smoothstep(0.45, 0.0, length(g)) * appear;
-    float fade = fract(t * 0.15 + cell);
-    stamp *= smoothstep(1.0, 0.5, fade);
-    return vec3(0.7, 0.6, 0.3) * stamp * 0.65;
+vec3 staticGrain(vec2 uv, float t) {
+    float g = hash(uv * 300.0 + vec2(t * 17.3, t * 9.1));
+    return vec3(g);
 }
 
 void main() {
     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-    float t = u_time;
+    vec2 centered = uv * 2.0 - 1.0;
+    centered.x *= u_resolution.x / u_resolution.y;
 
-    vec3 base = breathingField(uv, t);
-    vec3 ledger = ledgerLines(uv, t);
-    vec3 stat = staticNoise(uv, t);
-    vec3 form = pulsingForm(uv, t);
-    vec3 glyph = complianceGlyph(uv, t);
+    float t = u_time * 0.4;
+    float bass = clamp(u_bass_energy, 0.0, 1.0);
+    float shimmer = clamp(u_shimmer, 0.0, 1.0);
+    float pulse = clamp(u_pulse_amp, 0.0, 1.0);
+    float bright = clamp(u_spectral_brightness, 0.0, 1.0);
+    float tension = clamp(u_feedback_tension, 0.0, 1.0);
 
-    vec3 col = base + ledger + stat * 0.6 + form + glyph;
+    vec2 grip = centered;
+    float latency = sin(t * 3.7 + fbm(grip * 2.0 + t * 0.3) * 6.28) * 0.5 + 0.5;
+    grip += vec2(
+        sin(t * 1.3 + centered.y * 4.0) * 0.08 * (1.0 + bass),
+        cos(t * 1.7 + centered.x * 3.5) * 0.08 * (1.0 + pulse)
+    );
 
-    float vignette = 1.0 - 0.45 * pow(length(uv - 0.5) * 1.6, 2.0);
-    col *= vignette;
+    float dist = length(grip);
+    float angle = atan(grip.y, grip.x);
 
-    float flicker = 0.88 + 0.12 * hash(vec2(t * 60.0, 0.5));
-    col *= flicker;
+    float rings = sin(dist * 18.0 - t * 5.0 + bass * 6.28) * 0.5 + 0.5;
+    rings *= sin(dist * 7.0 + t * 2.3) * 0.5 + 0.5;
 
-    col = pow(clamp(col, 0.0, 1.0), vec3(0.88));
+    float spiral = sin(angle * 5.0 + dist * 12.0 - t * 4.0 + tension * 3.14) * 0.5 + 0.5;
 
-    fragColor = vec4(col, 1.0);
+    float field = fbm(grip * 3.5 + vec2(t * 0.5, t * 0.3));
+    float field2 = fbm(grip * 5.0 - vec2(t * 0.4, t * 0.6) + field);
+
+    float collapse = smoothstep(0.8, 0.0, dist) * (1.0 + bass * 0.5);
+    float staticNoise = hash(uv * (200.0 + tension * 300.0) + vec2(floor(t * 24.0) * 0.1));
+    float staticLayer = pow(staticNoise, 3.0) * (0.3 + tension * 0.7);
+
+    float vibration = sin(t * 60.0 * (1.0 + tension) + dist * 30.0) * 0.5 + 0.5;
+    vibration *= smoothstep(0.6, 0.2, dist) * tension * 0.5;
+
+    float core = rings * 0.4 + spiral * 0.3 + field2 * 0.3;
+    core = core * collapse + staticLayer * 0.4 + vibration;
+
+    vec3 colA = vec3(0.85, 0.35, 0.15);
+    vec3 colB = vec3(0.15, 0.55, 0.85);
+    vec3 colC = vec3(0.95, 0.85, 0.45);
+    vec3 colStatic = vec3(0.75, 0.72, 0.70);
+
+    float blend = field * 0.5 + latency * 0.5;
+    vec3 color = mix(colA, colB, blend);
+    color = mix(color, colC, spiral * bright * 0.6);
+    color = mix(color, colStatic, staticLayer * 0.5);
+
+    color *= (0.5 + core * 1.2);
+    color += shimmer * 0.3 * vec3(0.9, 0.85, 1.0) * (sin(t * 8.0 + dist * 10.0) * 0.5 + 0.5);
+    color += pulse * 0.25 * colA * rings;
+
+    float grain = (hash(uv * 512.0 + vec2(t * 31.0)) - 0.5) * 0.06;
+    color += grain;
+
+    float vignette = 1.0 - smoothstep(0.5, 1.4, dist);
+    color *= 0.4 + vignette * 0.8;
+
+    color = clamp(color, 0.0, 1.0);
+    color = pow(color, vec3(0.85));
+
+    fragColor = vec4(color, 1.0);
 }

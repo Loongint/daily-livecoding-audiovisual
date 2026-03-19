@@ -1,88 +1,87 @@
-SynthDef(\ledger_pulse, {
-    arg freq = 48, amp = 0.18, gate = 1;
-    var env, pulse, sub, noise, sig, brightness_mod, motion_mod;
-    brightness_mod = 1.0 + ((~brightness ? 0.5) * 0.4);
-    motion_mod = 0.5 + ((~motion ? 0.5) * 0.8);
-    env = EnvGen.kr(Env.asr(4.0, 1.0, 6.0), gate, doneAction: 2);
-    pulse = LFPulse.ar(freq * brightness_mod * 0.5, 0, 0.12) * 0.6;
-    pulse = pulse + LFPulse.ar(freq * brightness_mod, 0, 0.08) * 0.3;
-    sub = SinOsc.ar(freq * 0.5 * brightness_mod) * 0.5;
-    noise = BPF.ar(
-        WhiteNoise.ar(0.15),
-        LFNoise1.kr(0.08).exprange(200, 900),
-        0.04
-    ) * motion_mod;
-    sig = (pulse + sub + noise) * env * amp;
-    sig = sig.clip2(0.7) * 0.85;
-    sig = LPF.ar(sig, 2800);
+SynthDef(\gripStatic, {
+    arg freq = 80, amp = 0.18, gate = 1;
+    var sig, feedback, env, noise, lfo;
+    var brightness = \brightness.kr(0.5);
+    var motion = \motion.kr(0.5);
+    var hue = \hue.kr(0.5);
+    env = EnvGen.kr(Env.asr(2.0, 1.0, 3.0), gate, doneAction: 2);
+    lfo = LFNoise2.kr(0.3 + (motion * 0.8));
+    noise = WhiteNoise.ar(0.4);
+    feedback = LocalIn.ar(2, 0.0);
+    sig = RLPF.ar(noise, (freq * (1.0 + (brightness * 0.6))) + (lfo * 30), 0.08 + (hue * 0.12));
+    sig = sig + (feedback * (0.72 + (motion * 0.18)));
+    sig = sig.tanh * 0.6;
+    LocalOut.ar(sig * [1.0, 0.997]);
+    sig = HPF.ar(sig, 60);
+    sig = sig * amp * env;
     SendReply.kr(Impulse.kr(30), '/audio/bass_energy', Amplitude.kr(sig));
     Out.ar(0, sig ! 2);
 }).add;
 
-SynthDef(\static_compliance, {
-    arg amp = 0.09, gate = 1;
-    var env, static_noise, filtered, comb1, comb2, sig, hue_mod, brightness_mod;
-    hue_mod = 0.3 + ((~hue ? 0.5) * 1.4);
-    brightness_mod = 0.4 + ((~brightness ? 0.5) * 0.9);
-    env = EnvGen.kr(Env.asr(8.0, 1.0, 10.0), gate, doneAction: 2);
-    static_noise = WhiteNoise.ar(1.0);
-    filtered = BPF.ar(static_noise, LFNoise2.kr(0.05).exprange(300, 3200), 0.15);
-    filtered = filtered + BPF.ar(static_noise, LFNoise2.kr(0.03).exprange(80, 400), 0.08) * 0.6;
-    comb1 = CombL.ar(filtered, 0.5, 0.23 * hue_mod, 4.2) * 0.4;
-    comb2 = CombL.ar(filtered, 0.5, 0.37 * hue_mod, 6.8) * 0.3;
-    sig = (filtered * 0.3 + comb1 + comb2) * env * amp * brightness_mod;
-    sig = sig.clip2(0.6) * 0.88;
-    sig = HPF.ar(sig, 60);
-    sig = LPF.ar(sig, 5500);
+SynthDef(\latencyVibrate, {
+    arg freq = 340, amp = 0.12, gate = 1;
+    var sig, mod, env, chain, trig;
+    var brightness = \brightness.kr(0.5);
+    var motion = \motion.kr(0.5);
+    var hue = \hue.kr(0.5);
+    env = EnvGen.kr(Env.asr(1.5, 1.0, 2.5), gate, doneAction: 2);
+    mod = LFNoise1.kr(12 + (motion * 20)) * (0.5 + (hue * 0.5));
+    sig = Pulse.ar(
+        (freq * (1.0 + (brightness * 0.4))) + (mod * freq * 0.08),
+        0.5 + (mod * 0.3)
+    );
+    sig = BPF.ar(sig, 800 + (hue * 1200), 0.3);
+    trig = Impulse.kr(8 + (motion * 16));
+    chain = sig * TRand.kr(0.3, 1.0, trig);
+    sig = (sig * 0.4) + (chain * 0.6);
+    sig = sig.softclip * 0.55;
+    sig = sig * amp * env;
     SendReply.kr(Impulse.kr(30), '/audio/mid_energy', Amplitude.kr(sig));
-    Out.ar(0, [sig, sig * LFNoise1.kr(0.07).range(0.6, 1.0)]);
+    Out.ar(0, [sig, DelayN.ar(sig, 0.05, 0.031 + (motion * 0.019))]);
 }).add;
 
-SynthDef(\erased_signal, {
-    arg freq = 220, amp = 0.07, gate = 1;
-    var env, tone, ghost, shimmer, sig, motion_mod, hue_mod;
-    motion_mod = 0.2 + ((~motion ? 0.5) * 1.6);
-    hue_mod = 0.5 + ((~hue ? 0.5) * 1.0);
-    env = EnvGen.kr(Env.asr(12.0, 1.0, 14.0), gate, doneAction: 2);
-    tone = SinOsc.ar(
-        freq * hue_mod * LFNoise2.kr(0.04).range(0.97, 1.03),
-        0,
-        0.5
+SynthDef(\collapseField, {
+    arg amp = 0.14, gate = 1;
+    var sig, grains, env, pos, rate;
+    var brightness = \brightness.kr(0.5);
+    var motion = \motion.kr(0.5);
+    var hue = \hue.kr(0.5);
+    env = EnvGen.kr(Env.asr(3.0, 1.0, 4.0), gate, doneAction: 2);
+    pos = LFNoise2.kr(0.15 + (motion * 0.4));
+    rate = LFNoise2.kr(0.08) * 0.5 + 1.0;
+    grains = GrainIn.ar(
+        2,
+        Impulse.kr(18 + (motion * 24)),
+        0.04 + (brightness * 0.06),
+        HPF.ar(PinkNoise.ar(1.0), 200 + (hue * 800)),
+        pos
     );
-    tone = tone + SinOsc.ar(freq * hue_mod * 2.01, 0, 0.18);
-    tone = tone + SinOsc.ar(freq * hue_mod * 3.0, 0, 0.07);
-    ghost = tone * LFNoise2.kr(motion_mod * 0.15).range(0.0, 0.6);
-    shimmer = Ringz.ar(
-        Dust.ar(motion_mod * 1.2) * 0.3,
-        LFNoise1.kr(0.06).exprange(800, 4000),
-        0.8
-    ) * 0.25;
-    sig = (ghost + shimmer) * env * amp;
-    sig = sig.clip2(0.55) * 0.9;
-    sig = LPF.ar(sig, 6000);
-    sig = HPF.ar(sig, 40);
+    sig = grains;
+    sig = CombC.ar(sig, 0.5, 0.23 + (hue * 0.11), 1.8 + (brightness * 1.2));
+    sig = LPF.ar(sig, 3000 + (brightness * 4000));
+    sig = sig * amp * env;
+    sig = sig.clip2(0.7) * 0.7;
     SendReply.kr(Impulse.kr(30), '/audio/high_energy', Amplitude.kr(sig));
-    Out.ar(0, [sig, DelayL.ar(sig, 0.5, 0.018)]);
+    Out.ar(0, sig);
 }).add;
 
 fork {
-    ~ledger = Synth(\ledger_pulse);
-    ~static_comp = Synth(\static_compliance);
-    12.0.wait;
-    ~erased = Synth(\erased_signal);
-    18.0.wait;
     inf.do {
-        ~ledger.free;
-        4.0.wait;
-        ~ledger = Synth(\ledger_pulse);
-        10.0.wait;
-        ~static_comp.free;
-        6.0.wait;
-        ~static_comp = Synth(\static_compliance);
-        8.0.wait;
-        ~erased.free;
-        5.0.wait;
-        ~erased = Synth(\erased_signal);
-        14.0.wait;
+        ~gripStatic = Synth(\gripStatic, [\freq, 75, \amp, 0.16]);
+        ~latencyVibrate = Synth(\latencyVibrate, [\freq, 320, \amp, 0.10]);
+        (8.0 + 4.0.rand).wait;
+        ~latencyVibrate.set(\gate, 0);
+        ~collapseField = Synth(\collapseField, [\amp, 0.13]);
+        (6.0 + 3.0.rand).wait;
+        ~gripStatic.set(\gate, 0);
+        (4.0 + 2.0.rand).wait;
+        ~collapseField.set(\gate, 0);
+        ~gripStatic = Synth(\gripStatic, [\freq, 60 + 30.rand, \amp, 0.15]);
+        (5.0 + 3.0.rand).wait;
+        ~latencyVibrate = Synth(\latencyVibrate, [\freq, 280 + 120.rand, \amp, 0.11]);
+        (7.0 + 4.0.rand).wait;
+        ~gripStatic.set(\gate, 0);
+        ~latencyVibrate.set(\gate, 0);
+        2.0.wait;
     };
 };

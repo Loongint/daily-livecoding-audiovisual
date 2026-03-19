@@ -7,17 +7,22 @@
     },
     {
       "osc": "/audio/mid_energy",
-      "uniform": "u_shimmer",
+      "uniform": "u_feedback_tension",
       "type": "float"
     },
     {
       "osc": "/audio/high_energy",
-      "uniform": "u_spectral_brightness",
+      "uniform": "u_shimmer",
       "type": "float"
     },
     {
       "osc": "/audio/bass_energy",
       "uniform": "u_pulse_amp",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/high_energy",
+      "uniform": "u_spectral_brightness",
       "type": "float"
     }
   ],
