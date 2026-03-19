@@ -6,7 +6,6 @@ uniform float u_bass_energy;
 uniform float u_shimmer;
 uniform float u_pulse_amp;
 uniform float u_spectral_brightness;
-uniform float u_feedback_tension;
 
 out vec4 fragColor;
 
@@ -27,82 +26,84 @@ float noise(vec2 p) {
 
 float fbm(vec2 p) {
     float v = 0.0;
-    float amp = 0.5;
+    float a = 0.5;
     for (int i = 0; i < 5; i++) {
-        v += amp * noise(p);
+        v += a * noise(p);
         p = p * 2.1 + vec2(1.3, 0.7);
-        amp *= 0.5;
+        a *= 0.5;
     }
     return v;
 }
 
-vec3 staticGrain(vec2 uv, float t) {
-    float g = hash(uv * 300.0 + vec2(t * 17.3, t * 9.1));
-    return vec3(g);
+float ledgerLine(vec2 uv, float y, float thickness, float t) {
+    float erasure = noise(vec2(uv.x * 8.0, t * 0.3 + y * 10.0));
+    float line = smoothstep(thickness, 0.0, abs(uv.y - y));
+    return line * smoothstep(0.35, 0.65, erasure);
 }
 
 void main() {
-    vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-    vec2 centered = uv * 2.0 - 1.0;
-    centered.x *= u_resolution.x / u_resolution.y;
-
+    vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution) / u_resolution.y;
     float t = u_time * 0.4;
-    float bass = clamp(u_bass_energy, 0.0, 1.0);
-    float shimmer = clamp(u_shimmer, 0.0, 1.0);
-    float pulse = clamp(u_pulse_amp, 0.0, 1.0);
-    float bright = clamp(u_spectral_brightness, 0.0, 1.0);
-    float tension = clamp(u_feedback_tension, 0.0, 1.0);
 
-    vec2 grip = centered;
-    float latency = sin(t * 3.7 + fbm(grip * 2.0 + t * 0.3) * 6.28) * 0.5 + 0.5;
-    grip += vec2(
-        sin(t * 1.3 + centered.y * 4.0) * 0.08 * (1.0 + bass),
-        cos(t * 1.7 + centered.x * 3.5) * 0.08 * (1.0 + pulse)
+    float bass = 0.5 + u_bass_energy * 0.5;
+    float shimmer = 0.5 + u_shimmer * 0.5;
+    float pulse = 0.5 + u_pulse_amp * 0.5;
+    float bright = 0.5 + u_spectral_brightness * 0.5;
+
+    vec3 col = vec3(0.0);
+
+    vec3 bgDark = vec3(0.08, 0.12, 0.18);
+    vec3 bgMid  = vec3(0.22, 0.30, 0.42);
+    float bgGrad = smoothstep(-0.6, 0.6, uv.y);
+    col = mix(bgDark, bgMid, bgGrad);
+
+    float staticField = fbm(uv * 6.0 + vec2(t * 0.2, t * 0.15));
+    float staticField2 = fbm(uv * 12.0 - vec2(t * 0.1, t * 0.25));
+    float density = staticField * 0.6 + staticField2 * 0.4;
+
+    vec3 staticColor = mix(
+        vec3(0.35, 0.50, 0.65),
+        vec3(0.70, 0.85, 0.95),
+        density
     );
+    col = mix(col, staticColor, density * 0.55 * bass);
 
-    float dist = length(grip);
-    float angle = atan(grip.y, grip.x);
+    float numLines = 18.0;
+    float lineAccum = 0.0;
+    for (int i = 0; i < 18; i++) {
+        float fi = float(i);
+        float y = -0.5 + (fi / numLines) * 1.1 + 0.02 * sin(t * 0.5 + fi * 0.7);
+        float th = 0.003 + 0.004 * pulse;
+        lineAccum += ledgerLine(uv, y, th, t + fi * 0.13);
+    }
+    vec3 lineColor = mix(vec3(0.75, 0.88, 1.0), vec3(1.0, 0.95, 0.80), shimmer);
+    col += lineColor * lineAccum * 0.65;
 
-    float rings = sin(dist * 18.0 - t * 5.0 + bass * 6.28) * 0.5 + 0.5;
-    rings *= sin(dist * 7.0 + t * 2.3) * 0.5 + 0.5;
+    float entryNoise = fbm(uv * 20.0 + vec2(0.0, t * 0.08));
+    float entryMask = smoothstep(0.55, 0.75, entryNoise);
+    float entryFlicker = 0.5 + 0.5 * sin(t * 3.0 + entryNoise * 20.0);
+    col += vec3(0.60, 0.75, 0.90) * entryMask * entryFlicker * 0.30 * bright;
 
-    float spiral = sin(angle * 5.0 + dist * 12.0 - t * 4.0 + tension * 3.14) * 0.5 + 0.5;
+    float pulseCycle = 0.5 + 0.5 * sin(t * 1.8);
+    float threshold = 0.72;
+    float prePulse = smoothstep(threshold - 0.15, threshold, pulseCycle * pulse);
+    float radial = 1.0 - smoothstep(0.0, 0.55, length(uv));
+    col += vec3(0.50, 0.70, 1.0) * prePulse * radial * 0.45;
 
-    float field = fbm(grip * 3.5 + vec2(t * 0.5, t * 0.3));
-    float field2 = fbm(grip * 5.0 - vec2(t * 0.4, t * 0.6) + field);
+    float moonPhase = 0.5;
+    vec2 moonUV = uv - vec2(0.3, 0.28);
+    float moonDist = length(moonUV);
+    float moonGlow = exp(-moonDist * 6.0) * 0.5 * moonPhase;
+    float moonDisc = smoothstep(0.06, 0.055, moonDist);
+    col += vec3(0.85, 0.90, 1.0) * moonGlow;
+    col += vec3(0.92, 0.95, 1.0) * moonDisc * 0.7;
 
-    float collapse = smoothstep(0.8, 0.0, dist) * (1.0 + bass * 0.5);
-    float staticNoise = hash(uv * (200.0 + tension * 300.0) + vec2(floor(t * 24.0) * 0.1));
-    float staticLayer = pow(staticNoise, 3.0) * (0.3 + tension * 0.7);
+    float eraseSurface = fbm(uv * 5.0 - vec2(t * 0.05, 0.0));
+    float eraseAlpha = smoothstep(0.60, 0.80, eraseSurface) * 0.35;
+    col = mix(col, vec3(0.15, 0.20, 0.28), eraseAlpha);
 
-    float vibration = sin(t * 60.0 * (1.0 + tension) + dist * 30.0) * 0.5 + 0.5;
-    vibration *= smoothstep(0.6, 0.2, dist) * tension * 0.5;
+    col = pow(clamp(col, 0.0, 1.0), vec3(0.88));
+    col = mix(col, col * col * (3.0 - 2.0 * col), 0.25);
 
-    float core = rings * 0.4 + spiral * 0.3 + field2 * 0.3;
-    core = core * collapse + staticLayer * 0.4 + vibration;
-
-    vec3 colA = vec3(0.85, 0.35, 0.15);
-    vec3 colB = vec3(0.15, 0.55, 0.85);
-    vec3 colC = vec3(0.95, 0.85, 0.45);
-    vec3 colStatic = vec3(0.75, 0.72, 0.70);
-
-    float blend = field * 0.5 + latency * 0.5;
-    vec3 color = mix(colA, colB, blend);
-    color = mix(color, colC, spiral * bright * 0.6);
-    color = mix(color, colStatic, staticLayer * 0.5);
-
-    color *= (0.5 + core * 1.2);
-    color += shimmer * 0.3 * vec3(0.9, 0.85, 1.0) * (sin(t * 8.0 + dist * 10.0) * 0.5 + 0.5);
-    color += pulse * 0.25 * colA * rings;
-
-    float grain = (hash(uv * 512.0 + vec2(t * 31.0)) - 0.5) * 0.06;
-    color += grain;
-
-    float vignette = 1.0 - smoothstep(0.5, 1.4, dist);
-    color *= 0.4 + vignette * 0.8;
-
-    color = clamp(color, 0.0, 1.0);
-    color = pow(color, vec3(0.85));
-
-    fragColor = vec4(color, 1.0);
+    fragColor = vec4(col, 1.0);
 }
