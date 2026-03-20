@@ -1,0 +1,74 @@
+{
+  "chinese_title": "临界热病",
+  "english_title": "Fever Claimed As Signal",
+  "theme_note": "Dense convergence point trembling at threshold — pressure visible as light, collapse mistaken for ignition",
+  "hexagram": {
+    "number": 15,
+    "chinese_name": "谦",
+    "pinyin": "qiān",
+    "english_name": "Modesty",
+    "judgment_hint": "humility, mountain, earth"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 0.4,
+        "lon": 0.39
+      },
+      "Moon": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 26.0,
+        "lon": 26.04
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 8.5,
+        "lon": 338.5
+      },
+      "Venus": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 18.1,
+        "lon": 18.06
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 14.5,
+        "lon": 344.5
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 15.2,
+        "lon": 105.24
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 4.2,
+        "lon": 4.18
+      }
+    },
+    "moon_phase_pct": 5.1,
+    "moon_phase_label": "Waxing Crescent",
+    "aspects": [
+      "Sun conjunction Saturn",
+      "Moon conjunction Venus",
+      "Mercury conjunction Mars",
+      "Mercury trine Jupiter",
+      "Venus square Jupiter"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 70.0,
+    "condition": "cloudy"
+  },
+  "events": "**a tightening spiral where the clock hand leans toward some edge no one can name**\n\nthe furnace promises infinite light while the city beneath it is already smoldering — old fire, new fire, same wind\n\nevery gate opens and closes simultaneously: chips rationed like grain, bodies sorted at borders, art blooming in the foreclosed garden\n\nthe numbers are sick — growth subtracted, risk compounded — and the body politic mistakes its fever for warmth\n\nsomewhere, 192 beams converge on a single point, and we call it hope because we have forgotten what surrender dressed as ambition looks like",
+  "context_felt": "A blade still sheathed presses hot against the thigh — all that fire bowing low under wet stone.\n\nTwo currents braid beneath the skin: one surging forward, one dissolving backward, and the body hums at their seam.\n\nSomething enormous is kneeling — not defeated, just coiling, tasting the soil before it stands."
+}
