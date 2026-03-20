@@ -1,7 +1,7 @@
 {
-  "chinese_title": "阈值治理",
-  "english_title": "Governance of Thresholds",
-  "theme_note": "Saturated field, permissions dissolving into static, a ledger that breathes but never opens",
+  "chinese_title": "准入阈 / Permission Threshold",
+  "english_title": "Scarcity as Protocol",
+  "theme_note": "Dense gridfields compressing toward silence, surfaces swelling beneath rigid frames, time held at the edge of rupture.",
   "hexagram": {
     "number": 14,
     "chinese_name": "大有",
@@ -69,6 +69,6 @@
     "humidity": 70.0,
     "condition": "cloudy"
   },
-  "events": "a hum beneath every threshold, the machinery of choosing who decides\n\nthe weight of air itself repriced, each breath a line item on a ledger no one agreed to sign\n\nold storms wearing new skins, arriving everywhere at once like a memory the planet can't stop repeating\n\nthe tools sharpen faster than the hand learns restraint\n\nsomewhere a door is bolted and called open, somewhere a wall is named a window",
-  "context_felt": "A fullness pressing against a membrane about to dissolve — warmth with nowhere to land.\n\nEverything igniting at the edge of something still waterlogged, sparks hissing into wet ground.\n\nThe air holds more than it shows, a heaviness disguised as stillness before the first crack."
+  "events": "A low hum of systems tightening against themselves — growth contracting while heat expands, every forecast a wound dressed in numbers.\n\nBodies moved across borders like data across firewalls — caught between the logic of walls and the gravity of need, each policy a door that swings both ways into bruising.\n\nThe atmosphere bargains with no one: flood and fire arriving simultaneously in five languages, a planetary stutter no algorithm can smooth.\n\nChips withheld, chips governed, chips disclosed — intelligence made material, then made scarce, power circulating as permission.\n\nSomewhere a painted lily pond hangs still on a gallery wall while the real water rises outside, and the distance between those two surfaces is the exact shape of our paralysis.",
+  "context_felt": "A fullness pressing through gauze — everything ripe but nothing yet torn open.\n\nThe body lunges forward while the water still holds the feet, a blade dipped in dream.\n\nSomething enormous is being handed over in the dark, and the hands haven't learned their new weight."
 }

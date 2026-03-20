@@ -6,13 +6,23 @@
       "type": "float"
     },
     {
-      "osc": "/audio/mid_energy",
-      "uniform": "u_shimmer",
+      "osc": "/audio/grid_density",
+      "uniform": "u_threshold_pressure",
       "type": "float"
     },
     {
-      "osc": "/audio/high_energy",
+      "osc": "/audio/rupture_tension",
       "uniform": "u_pulse_amp",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/rupture_tension",
+      "uniform": "u_spectral_brightness",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/grid_density",
+      "uniform": "u_shimmer",
       "type": "float"
     }
   ],
@@ -20,17 +30,12 @@
     {
       "feature": "brightness",
       "osc": "/visual/brightness",
-      "sc_var": "~thresh_drone"
+      "sc_var": "~brightness"
     },
     {
       "feature": "motion",
       "osc": "/visual/motion",
-      "sc_var": "~thresh_static"
-    },
-    {
-      "feature": "hue",
-      "osc": "/visual/hue",
-      "sc_var": "~thresh_ledger"
+      "sc_var": "~motion"
     }
   ]
 }
