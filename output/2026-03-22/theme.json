@@ -1,0 +1,74 @@
+{
+  "chinese_title": "治权熔断",
+  "english_title": "Governance Meltdown Index",
+  "theme_note": "Overheated grids collapsing into soft architectures; pulse without origin, structure without consent.",
+  "hexagram": {
+    "number": 16,
+    "chinese_name": "豫",
+    "pinyin": "yù",
+    "english_name": "Enthusiasm",
+    "judgment_hint": "joy, thunder, movement"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 1.4,
+        "lon": 1.38
+      },
+      "Moon": {
+        "sign": "Taurus",
+        "sign_zh": "金牛",
+        "degree": 10.5,
+        "lon": 40.5
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 8.6,
+        "lon": 338.56
+      },
+      "Venus": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 19.3,
+        "lon": 19.3
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 15.3,
+        "lon": 345.28
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 15.3,
+        "lon": 105.27
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 4.3,
+        "lon": 4.3
+      }
+    },
+    "moon_phase_pct": 11.4,
+    "moon_phase_label": "Waxing Crescent",
+    "aspects": [
+      "Sun conjunction Saturn",
+      "Moon sextile Mercury",
+      "Moon sextile Mars",
+      "Moon sextile Jupiter",
+      "Mercury conjunction Mars"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 70.0,
+    "condition": "cloudy"
+  },
+  "events": "A hand on the thermostat and a hand on the trigger — both turning in the same direction.\n\nThe ledger keeps splitting: what grows is not what feeds, what feeds is not what lasts.\n\nPermission architectures for thinking machines, drawn by those who cannot govern fire.\n\nA clock with no hands left, only the sound of ticking sold as content.\n\nThe body still dances in the gallery while the soil beneath the foundation warms.",
+  "context_felt": "A heavy drum struck once inside the chest — the body already moving before the mind agrees.\n\nWarm wet air pressing against new skin, everything tender and armored at the same time.\n\nSomething enormous is being born through something that hasn't finished dissolving."
+}

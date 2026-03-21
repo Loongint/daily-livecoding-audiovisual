@@ -1,0 +1,56 @@
+{
+  "audio_to_visual": [
+    {
+      "osc": "/audio/bass_energy",
+      "uniform": "u_bass_energy",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/mid_energy",
+      "uniform": "u_heat_flux",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/pulse_energy",
+      "uniform": "u_pulse_amp",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/bass_energy",
+      "uniform": "u_shimmer",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/mid_energy",
+      "uniform": "u_spectral_brightness",
+      "type": "float"
+    }
+  ],
+  "visual_to_audio": [
+    {
+      "feature": "brightness",
+      "osc": "/visual/brightness",
+      "sc_var": "~govMelt"
+    },
+    {
+      "feature": "motion",
+      "osc": "/visual/motion",
+      "sc_var": "~collapseGrid"
+    },
+    {
+      "feature": "complexity",
+      "osc": "/visual/complexity",
+      "sc_var": "~pulseOrigin"
+    },
+    {
+      "feature": "hue",
+      "osc": "/visual/hue",
+      "sc_var": "~collapseGrid"
+    },
+    {
+      "feature": "saturation",
+      "osc": "/visual/saturation",
+      "sc_var": "~govMelt"
+    }
+  ]
+}
