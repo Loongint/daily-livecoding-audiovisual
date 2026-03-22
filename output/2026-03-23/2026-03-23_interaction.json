@@ -1,0 +1,46 @@
+{
+  "audio_to_visual": [
+    {
+      "osc": "/audio/bass_energy",
+      "uniform": "u_bass_energy",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/mid_energy",
+      "uniform": "u_pulse_amp",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/air_energy",
+      "uniform": "u_shimmer",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/air_energy",
+      "uniform": "u_density",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/mid_energy",
+      "uniform": "u_spectral_brightness",
+      "type": "float"
+    }
+  ],
+  "visual_to_audio": [
+    {
+      "feature": "brightness",
+      "osc": "/visual/brightness",
+      "sc_var": "~brightness"
+    },
+    {
+      "feature": "motion",
+      "osc": "/visual/motion",
+      "sc_var": "~motion"
+    },
+    {
+      "feature": "hue",
+      "osc": "/visual/hue",
+      "sc_var": "~hue"
+    }
+  ]
+}

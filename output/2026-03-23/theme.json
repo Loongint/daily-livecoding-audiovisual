@@ -1,0 +1,74 @@
+{
+  "chinese_title": "阈值通关 / Threshold Customs",
+  "english_title": "Held At Rate",
+  "theme_note": "Dense vibration at a locked frequency — bodies queued in saturated air, passage narrowing toward stasis.",
+  "hexagram": {
+    "number": 17,
+    "chinese_name": "随",
+    "pinyin": "suí",
+    "english_name": "Following",
+    "judgment_hint": "adaptation, lake, thunder"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 2.4,
+        "lon": 2.37
+      },
+      "Moon": {
+        "sign": "Taurus",
+        "sign_zh": "金牛",
+        "degree": 25.0,
+        "lon": 54.99
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 8.7,
+        "lon": 338.72
+      },
+      "Venus": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 20.5,
+        "lon": 20.54
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 16.1,
+        "lon": 346.07
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 15.3,
+        "lon": 105.31
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 4.4,
+        "lon": 4.43
+      }
+    },
+    "moon_phase_pct": 19.8,
+    "moon_phase_label": "Waxing Crescent",
+    "aspects": [
+      "Sun conjunction Saturn",
+      "Mercury conjunction Mars",
+      "Mercury trine Jupiter",
+      "Venus square Jupiter",
+      "Mars trine Jupiter"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 70.0,
+    "condition": "cloudy"
+  },
+  "events": "A narrow passage held open by trembling hands — everything flows through the bottleneck, fuel and fear alike, while the throttle tightens on what can move and what must stay.\n\nThe body counted and sorted at every threshold: who labors, who belongs, who is worth the cost of entry — flesh as ledger line, breath as policy variable.\n\nA steady hum of held rates, held breath, held positions — the system neither crashes nor releases, just vibrates at a frequency of suspended consequence.\n\nChips reviewed one by one like souls at a gate — intelligence itself rationed, parsed, governed — the mind we built now subject to the customs desk.\n\nThe sky keeps its receipts: billion-dollar disasters queued for tabulation, the planet submitting invoices no treasury can cover, while somewhere a crew prepares to leave it behind entirely.",
+  "context_felt": "A heavy engine ignites inside wet cloth — all thrust, no clearing.\n\nSomething follows something else too closely, breath on the back of the neck, warm and uninvited.\n\nThe body wants to charge but the water keeps arriving, pooling in the joints, making every impulse a negotiation."
+}
