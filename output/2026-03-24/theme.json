@@ -1,0 +1,74 @@
+{
+  "chinese_title": "内压溃序 / Internal Pressure Collapse",
+  "english_title": "Arguments Below Ground",
+  "theme_note": "Dense layered signal compressing toward rupture; bright residue flickering in peripheral decay",
+  "hexagram": {
+    "number": 18,
+    "chinese_name": "蛊",
+    "pinyin": "gǔ",
+    "english_name": "Work on the Decayed",
+    "judgment_hint": "decay, renewal, wind-mountain"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 3.4,
+        "lon": 3.37
+      },
+      "Moon": {
+        "sign": "Gemini",
+        "sign_zh": "双子",
+        "degree": 9.4,
+        "lon": 69.43
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 9.0,
+        "lon": 338.97
+      },
+      "Venus": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 21.8,
+        "lon": 21.78
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 16.9,
+        "lon": 346.85
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 15.4,
+        "lon": 105.35
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 4.6,
+        "lon": 4.55
+      }
+    },
+    "moon_phase_pct": 29.9,
+    "moon_phase_label": "Waxing Crescent",
+    "aspects": [
+      "Sun conjunction Saturn",
+      "Moon square Mercury",
+      "Moon square Mars",
+      "Moon sextile Saturn",
+      "Mercury conjunction Mars"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 70.0,
+    "condition": "cloudy"
+  },
+  "events": "**System State / Emotional Frequency**\n\nA slow tightening — like air pressure before a storm that has already begun somewhere else.\n\nThe machine argues with itself over who may hold the next thought.\n\nEverything rises — water, heat, prices, walls — except the ground beneath.\n\nCelebration still happens in the margins, bright and defiant, a jazz note bent against the drone.\n\nSomething old keeps washing ashore, black and slick, never fully cleaned.",
+  "context_felt": "A hot wire tightens inside something already rotting — the collapse wants to be a door.\n\nTwo winds argue in the skull while the body dissolves downhill, sweetly, toward an older language.\n\nPressure without rain: the mountain holds its breath and the worms begin their bright work."
+}
