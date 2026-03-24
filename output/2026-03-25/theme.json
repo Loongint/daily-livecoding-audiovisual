@@ -1,0 +1,74 @@
+{
+  "chinese_title": "缓释阈值",
+  "english_title": "Slow Release Threshold",
+  "theme_note": "Pressurized stillness deforming at its seam; measured intervals masking accumulation beneath",
+  "hexagram": {
+    "number": 19,
+    "chinese_name": "临",
+    "pinyin": "lín",
+    "english_name": "Approach",
+    "judgment_hint": "drawing near, earth, lake"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 4.4,
+        "lon": 4.36
+      },
+      "Moon": {
+        "sign": "Gemini",
+        "sign_zh": "双子",
+        "degree": 23.8,
+        "lon": 83.76
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 9.3,
+        "lon": 339.31
+      },
+      "Venus": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 23.0,
+        "lon": 23.01
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 17.6,
+        "lon": 347.64
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 15.4,
+        "lon": 105.39
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 4.7,
+        "lon": 4.68
+      }
+    },
+    "moon_phase_pct": 41.0,
+    "moon_phase_label": "Waxing Crescent",
+    "aspects": [
+      "Sun conjunction Saturn",
+      "Moon sextile Venus",
+      "Moon square Mars",
+      "Mercury trine Jupiter",
+      "Venus square Jupiter"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 70.0,
+    "condition": "cloudy"
+  },
+  "events": "*a gift arrives ticking*\n\nthe machine tightens its own leash while offering you the key —\npressure holds steady in the pipes, and the meters call it calm.\nsomewhere between the border and the checkpoint, a body becomes a category becomes a line item.\nthe old fire still burns in the new factory; only the fabric has changed.\neverything launches upward while the ground beneath softens, unseen.",
+  "context_felt": "A thick hand presses flat against the surface of something about to open.\n\nTwo speeds braiding — one lunging forward, one dissolving backward into warm fog.\n\nThe lake rises to meet the edge of the field and neither breaks."
+}
