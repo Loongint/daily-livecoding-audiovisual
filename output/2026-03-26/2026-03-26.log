@@ -1,0 +1,49 @@
+[07:00:20] ⚙ Generating theme from date: 2026-03-26
+[07:00:49] 🎨 Theme: 恒温失效 | Thermostat Without Law
+[07:00:49] 📝 Note: Dense thermal interference stuttering between regulation and collapse, half-lit and shaking
+[07:00:49] 📰 World events →
+[07:00:49]    *a body trying to hold its temperature while the thermostat breaks*
+[07:00:49]    the machine asks permission to think faster than the law can speak
+[07:00:49]    hands that built the fence now reach through it for the harvest
+[07:00:49]    somewhere above the atmosphere a small room is being furnished while the ground floor floods
+[07:00:49]    the old cure remembered on the day the new fever has no name
+[07:00:49] 🔮 Symbolic/env facts →
+[07:00:49]    I Ching #20 观 (guān)
+[07:00:49]    ☀Aries  ☽Cancer First Quarter 52.4%
+[07:00:49]    aspects: Sun square Moon, Sun conjunction Saturn, Moon trine Mercury
+[07:00:49]    cloudy 25.0°C humidity 70.0%
+[07:00:49] 💭 Felt →
+[07:00:49]    A warm weight presses down through the watching — half the light swallowed, half the light rising against itself.
+[07:00:49]    Something vast and soft keeps dissolving the blade each time it sharpens, water in the muscle, water in the word.
+[07:00:49]    The tower and the nest share a wall tonight, and the wall is shaking.
+[07:00:49] ⚙ Generating GLSL shader...
+[07:01:12] 🔍 [local] Checking GLSL compile...
+[07:01:12] ✅ [local] GLSL compile OK
+[07:01:12] 🔍 [render] Analyzing rendered frames...
+[07:01:12] ✅ [render] 帧分析通过 (brightness=0.36, std=0.06)
+[07:01:12] 🔍 [AI] Checking GLSL visual quality...
+[07:01:15] ✅ [AI] GLSL visual quality OK
+[07:01:15] ✅ Shader: 3260 chars
+[07:01:18] 💬 Shader: 中文: 通过分形布朗运动(FBM)噪声生成非线性温度扰动场，结合音频驱动的时间步进、抖动和变形，模拟失控的热系统动态。
+EN: Multi-octave fractional Brownian motion noise generates unstable thermal distortion fields modulated by audio-reactive bass energy, shimmer, and temporal jitter to visualize chaotic thermostat breakdown.
+[07:01:18] ⚙ Generating SuperCollider score...
+[07:01:44] 🔍 [local] Checking SC syntax...
+[07:01:44] ✅ [local] SC syntax OK
+[07:01:44] 🔍 [audio] Analyzing audio spectrum...
+[07:01:44]   ℹ [audio] 启动临时SC服务器录音 (约20s)...
+[07:02:05]   ✅ [audio] SC服务器启动成功
+[07:02:05]   [audio] SC: Recording Stopped: (rec.wav)
+[07:02:05]   [audio] SC: RECORDING STOPPED
+[07:02:05]   [audio] SC: server 'altsc' disconnected shared memory interface
+[07:02:05]   [audio] SC: '/quit' message sent to server 'altsc'.
+[07:02:05]   [audio] SC: cleaning up OSC
+[07:02:05] ✅ [audio] 频谱正常 (RMS=0.085, bass=47%, mid=47%, high=7%)
+[07:02:05] 🔍 [AI] Checking SC audio safety...
+[07:02:07] ✅ [AI] SC audio safety OK
+[07:02:07] ✅ SCD: 3801 chars
+[07:02:09] 💬 SCD: 中文: 通过多层振荡器、随机调制和动态滤波的叠加,模拟失效的恒温系统中热量失控与规律崩溃的声学表现。
+EN: The code layers harmonic oscillators with stochastic modulation and dynamic filtering to sonically represent thermal chaos and regulatory breakdown in a malfunctioning temperature control system.
+[07:02:09] ⚙ Generating interaction spec...
+[07:02:13] ✅ Interaction: 5 A→V, 3 V→A
+[07:02:16] 💬 Interaction: 中文: 通过OSC协议实时映射音频能量频段（低、中、高频）到着色器uniform参数，驱动热流、脉冲、光谱亮度等视觉效果变化。
+EN: Real-time OSC-based audio frequency band mapping (bass, mid, high energy) to shader uniforms controlling thermal flux, pulse amplitude, and spectral brightness for dynamic visual synthesis.

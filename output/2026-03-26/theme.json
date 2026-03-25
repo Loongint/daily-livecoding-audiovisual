@@ -1,0 +1,74 @@
+{
+  "chinese_title": "恒温失效",
+  "english_title": "Thermostat Without Law",
+  "theme_note": "Dense thermal interference stuttering between regulation and collapse, half-lit and shaking",
+  "hexagram": {
+    "number": 20,
+    "chinese_name": "观",
+    "pinyin": "guān",
+    "english_name": "Contemplation",
+    "judgment_hint": "observation, wind, earth"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 5.3,
+        "lon": 5.35
+      },
+      "Moon": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 7.9,
+        "lon": 97.91
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 9.7,
+        "lon": 339.73
+      },
+      "Venus": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 24.2,
+        "lon": 24.25
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 18.4,
+        "lon": 348.42
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 15.4,
+        "lon": 105.44
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 4.8,
+        "lon": 4.8
+      }
+    },
+    "moon_phase_pct": 52.4,
+    "moon_phase_label": "First Quarter",
+    "aspects": [
+      "Sun square Moon",
+      "Sun conjunction Saturn",
+      "Moon trine Mercury",
+      "Moon conjunction Jupiter",
+      "Moon square Saturn"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 70.0,
+    "condition": "cloudy"
+  },
+  "events": "*a body trying to hold its temperature while the thermostat breaks*\n\nthe machine asks permission to think faster than the law can speak\n\nhands that built the fence now reach through it for the harvest\n\nsomewhere above the atmosphere a small room is being furnished while the ground floor floods\n\nthe old cure remembered on the day the new fever has no name",
+  "context_felt": "A warm weight presses down through the watching — half the light swallowed, half the light rising against itself.\n\nSomething vast and soft keeps dissolving the blade each time it sharpens, water in the muscle, water in the word.\n\nThe tower and the nest share a wall tonight, and the wall is shaking."
+}
