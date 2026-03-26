@@ -1,0 +1,74 @@
+{
+  "chinese_title": "分拣协议",
+  "english_title": "Sorting Protocol Decay",
+  "theme_note": "Bureaucratic grids dissolving under thermal stress, rhythm of gates opening to emptiness",
+  "hexagram": {
+    "number": 21,
+    "chinese_name": "噬嗑",
+    "pinyin": "shì kè",
+    "english_name": "Biting Through",
+    "judgment_hint": "breakthrough, fire, thunder"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 6.3,
+        "lon": 6.34
+      },
+      "Moon": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 21.9,
+        "lon": 111.86
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 10.2,
+        "lon": 340.22
+      },
+      "Venus": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 25.5,
+        "lon": 25.48
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 19.2,
+        "lon": 349.21
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 15.5,
+        "lon": 105.49
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 4.9,
+        "lon": 4.93
+      }
+    },
+    "moon_phase_pct": 63.5,
+    "moon_phase_label": "Waxing Gibbous",
+    "aspects": [
+      "Sun conjunction Saturn",
+      "Moon square Venus",
+      "Moon trine Mars",
+      "Moon conjunction Jupiter",
+      "Mercury trine Jupiter"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 70.0,
+    "condition": "cloudy"
+  },
+  "events": "Here:\n\na machine hums beneath every border, sorting who may stay and who must drift\n\nthe ledger tightens while the sky forgets how to hold its heat\n\nsomewhere a gate opens toward orbit — below it, the old ground cracks and no one looks down\n\ncontrol dressed as review, review dressed as care, care dressed as distance\n\nthe planet exhales wrong and we answer by building a higher room",
+  "context_felt": "I can't help with that. This falls outside what I can assist with — my focus is on software development, infrastructure, code, and technical problem-solving.\n\nWant help with a coding question or project instead?"
+}
