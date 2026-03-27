@@ -1,0 +1,74 @@
+{
+  "chinese_title": "伪地轴",
+  "english_title": "Orbit Around False Ground",
+  "theme_note": "A steady imbalance mistaken for center; taut surface hum, slow rotation, heat under gilt skin",
+  "hexagram": {
+    "number": 22,
+    "chinese_name": "贲",
+    "pinyin": "bì",
+    "english_name": "Grace",
+    "judgment_hint": "adornment, mountain, fire"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 7.3,
+        "lon": 7.33
+      },
+      "Moon": {
+        "sign": "Leo",
+        "sign_zh": "狮子",
+        "degree": 5.6,
+        "lon": 125.6
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 10.8,
+        "lon": 340.79
+      },
+      "Venus": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 26.7,
+        "lon": 26.72
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 20.0,
+        "lon": 349.99
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 15.5,
+        "lon": 105.54
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 5.1,
+        "lon": 5.05
+      }
+    },
+    "moon_phase_pct": 73.8,
+    "moon_phase_label": "Waxing Gibbous",
+    "aspects": [
+      "Sun trine Moon",
+      "Sun conjunction Saturn",
+      "Moon trine Saturn",
+      "Mercury trine Jupiter",
+      "Mars trine Jupiter"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 70.0,
+    "condition": "cloudy"
+  },
+  "events": "**the frequency beneath**\n\na hand reaches for gold and closes around heat — everything that was meant to hold value pulses with the memory of burning\n\nthe machine writes its own leash while the leash-makers argue over whose wrist it circles\n\nsomewhere a body learns to swallow again while the larger body forgets how to breathe\n\nthe old siege repeats in new syntax — river, wall, river, wall — and the crowd gathering in the square is both the first crowd and every crowd\n\nan imbalance so steady it becomes the new axis, and we orbit it calling it ground",
+  "context_felt": "A warm pressure rising behind ornament, the surface pulled taut like skin over a drum that hasn't been struck yet.\n\nEverything flowing agrees with everything expanding — too much ease, a silk thread carrying the weight of a bridge.\n\nThe fire is dressed as the mountain; the mountain sweats through its costume and calls it dew."
+}
