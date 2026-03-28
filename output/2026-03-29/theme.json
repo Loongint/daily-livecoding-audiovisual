@@ -1,0 +1,73 @@
+{
+  "chinese_title": "瓶颈序",
+  "english_title": "Bottleneck as Order",
+  "theme_note": "Compressed channels pulse at threshold; structure tightens until pressure becomes architecture of stillness.",
+  "hexagram": {
+    "number": 23,
+    "chinese_name": "剥",
+    "pinyin": "bō",
+    "english_name": "Splitting Apart",
+    "judgment_hint": "erosion, mountain, earth"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 8.3,
+        "lon": 8.32
+      },
+      "Moon": {
+        "sign": "Leo",
+        "sign_zh": "狮子",
+        "degree": 19.1,
+        "lon": 139.13
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 11.4,
+        "lon": 341.42
+      },
+      "Venus": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 27.9,
+        "lon": 27.95
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 20.8,
+        "lon": 350.77
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 15.6,
+        "lon": 105.6
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 5.2,
+        "lon": 5.18
+      }
+    },
+    "moon_phase_pct": 82.7,
+    "moon_phase_label": "Waxing Gibbous",
+    "aspects": [
+      "Sun square Jupiter",
+      "Sun conjunction Saturn",
+      "Mercury trine Jupiter",
+      "Mars trine Jupiter"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 70.0,
+    "condition": "cloudy"
+  },
+  "events": "A thickening in the air — gates closing while the scaffolding still rises, every channel narrowing to a bottleneck dressed as order.\n\nThe body learns to grow in two directions at once: upward toward vacuum, downward toward the burning aquifer, both pulling cells apart into new alphabets of damage and cure.\n\nBorders drawn in fever — between chips and soil, between flesh and labor, between the river and the frozen river — each line pretending it was always there.\n\nThe festival opens in the same city where the emergency was declared; the music and the sirens share a frequency only the walls can hear.\n\nSlow suffocation marketed as patience: the numbers drift wrong, the fuel still burns, and somewhere beneath the noise, an ancient army waits in the dark to be uncovered again.",
+  "context_felt": "A swelling behind the sternum that has nowhere to go — all push, no door.\n\nThe ground softens underneath something that still believes it is standing.\n\nHeavy light, almost ripe, the sky holding its breath one degree before breaking."
+}
