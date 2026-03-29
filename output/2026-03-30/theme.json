@@ -1,0 +1,74 @@
+{
+  "chinese_title": "闸值协议",
+  "english_title": "Threshold Under Consent",
+  "theme_note": "Dense grids compressing toward rupture, muted pulse against bureaucratic stillness, tension held not released.",
+  "hexagram": {
+    "number": 24,
+    "chinese_name": "复",
+    "pinyin": "fù",
+    "english_name": "Return",
+    "judgment_hint": "turning point, thunder, earth"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 9.3,
+        "lon": 9.31
+      },
+      "Moon": {
+        "sign": "Virgo",
+        "sign_zh": "处女",
+        "degree": 2.5,
+        "lon": 152.45
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 12.1,
+        "lon": 342.12
+      },
+      "Venus": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 29.2,
+        "lon": 29.18
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "sign_zh": "双鱼",
+        "degree": 21.6,
+        "lon": 351.56
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "sign_zh": "巨蟹",
+        "degree": 15.7,
+        "lon": 105.65
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "sign_zh": "白羊",
+        "degree": 5.3,
+        "lon": 5.3
+      }
+    },
+    "moon_phase_pct": 90.1,
+    "moon_phase_label": "Waxing Gibbous",
+    "aspects": [
+      "Sun square Jupiter",
+      "Sun conjunction Saturn",
+      "Moon trine Venus",
+      "Mercury trine Jupiter",
+      "Mars trine Jupiter"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 70.0,
+    "condition": "cloudy"
+  },
+  "events": "**a pressure held between teeth and policy**\n\nthe ledger tightens while the body drifts — everything counted, nothing felt, the hum of systems optimizing themselves against their own inhabitants.\n\na gate disguised as a gate: who may pass, what may be shipped, which chip carries the future and which carries the leash.\n\nsomewhere offstage, the air thickens and the water rises, but the orchestra is tuning and the audience is seated and the program notes promise innocence.\n\nnegotiations for war — the phrase folds in on itself like a mirror eating its own reflection, while old treaties echo forward, reminding us that every border was once a wound someone agreed to call healed.",
+  "context_felt": "A heavy drumbeat under wet soil, something pushing up before the ground is ready.\n\nBright blade and soft water pulling in opposite directions inside the same hand.\n\nThe fullness just before breaking — taut, warm, almost too ripe to hold."
+}
