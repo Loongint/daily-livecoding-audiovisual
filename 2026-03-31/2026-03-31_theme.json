@@ -1,0 +1,60 @@
+{
+  "chinese_title": "蓄压无阀",
+  "english_title": "Accumulation Without Release",
+  "theme_note": "Thermal density compressing behind glass — a system intake that never exhales, brightness approaching failure",
+  "hexagram": {
+    "number": 25,
+    "chinese_name": "无妄",
+    "pinyin": "wú wàng",
+    "english_name": "Innocence",
+    "judgment_hint": "unexpected, thunder, heaven"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "degree": 10.3
+      },
+      "Moon": {
+        "sign": "Virgo",
+        "degree": 15.6
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "degree": 12.9
+      },
+      "Venus": {
+        "sign": "Taurus",
+        "degree": 0.4
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "degree": 22.3
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "degree": 15.7
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "degree": 5.4
+      }
+    },
+    "moon_phase_pct": 95.4,
+    "moon_phase_label": "Waxing Gibbous",
+    "aspects": [
+      "Sun square Jupiter",
+      "Sun conjunction Saturn",
+      "Moon opposition Mercury",
+      "Moon opposition Mars",
+      "Moon sextile Jupiter"
+    ]
+  },
+  "weather": {
+    "temp": 24.0,
+    "humidity": 89.0,
+    "condition": "Partly cloudy"
+  },
+  "events": "**system-state / spring threshold**\n\nA slow heat accumulates in the walls of everything — ocean, algorithm, currency, body — with no valve and no release.\n\nThe gates are being redesigned while the traffic still moves through them, and no one knows which side they stand on.\n\nSomeone is calculating whether you belong here based on what you can produce, and calling it compassion.\n\nThe simulation opened decades ago and we still haven't found the exit — only more elaborate rooms, more convincing light.\n\nBeneath every announcement: the hum of a planet absorbing more than it can radiate back.",
+  "context_felt": "A pressure behind the sternum where wanting and not-wanting fuse into the same bright fist.\n\nThe air holds more than it releases — everything almost ripe, almost unbearable, almost true.\n\nSomething strikes upward through clean bone and the body says *yes* before the mind can refuse."
+}
