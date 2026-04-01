@@ -1,0 +1,60 @@
+{
+  "chinese_title": "透管治",
+  "english_title": "Total Clarity Disorder",
+  "theme_note": "Overexposed grid pulses beneath a locked white field; pressure accumulates with no release valve",
+  "hexagram": {
+    "number": 26,
+    "chinese_name": "大畜",
+    "pinyin": "dà chù",
+    "english_name": "Great Taming",
+    "judgment_hint": "restraint, mountain, heaven"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "degree": 11.3
+      },
+      "Moon": {
+        "sign": "Virgo",
+        "degree": 28.5
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "degree": 13.7
+      },
+      "Venus": {
+        "sign": "Taurus",
+        "degree": 1.6
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "degree": 23.1
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "degree": 15.8
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "degree": 5.6
+      }
+    },
+    "moon_phase_pct": 98.7,
+    "moon_phase_label": "Full Moon",
+    "aspects": [
+      "Sun square Jupiter",
+      "Sun conjunction Saturn",
+      "Moon opposition Mars",
+      "Moon opposition Saturn",
+      "Mercury trine Jupiter"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 61.0,
+    "condition": "Sunny"
+  },
+  "events": "**a rising hum beneath the floor**\n\ncontrol reaches outward while the ground beneath it liquefies — the hand extends but the body has no center\n\neverything is being labeled, governed, measured transparent — a clarity so total it becomes its own blindness\n\nthe furnace was never turned off — it just moved underground, into oceans, into the slow math of accumulation\n\ntrust dissolves at the surface while something weightless and cellular is manufactured above the atmosphere — healing exported to where gravity cannot interfere",
+  "context_felt": "A massive bright pressure held still behind the teeth of the ridge, shaking in place.\n\nThe belly tightens around its own sorting — every small thing examined under a swollen white floodlight that refuses to set.\n\nHeat locked in the bones, ambition clamped to the spine like a yoke that hums."
+}
