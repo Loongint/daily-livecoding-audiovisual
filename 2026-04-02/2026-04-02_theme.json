@@ -1,0 +1,60 @@
+{
+  "chinese_title": "逐案悬置",
+  "english_title": "Case-by-Case Void",
+  "theme_note": "Flickering jurisdictional grids collapse into held static; dense arbitration loops without resolution",
+  "hexagram": {
+    "number": 27,
+    "chinese_name": "颐",
+    "pinyin": "yí",
+    "english_name": "Nourishment",
+    "judgment_hint": "feeding, thunder, mountain"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "degree": 12.3
+      },
+      "Moon": {
+        "sign": "Libra",
+        "degree": 11.2
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "degree": 14.6
+      },
+      "Venus": {
+        "sign": "Taurus",
+        "degree": 2.9
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "degree": 23.9
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "degree": 15.8
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "degree": 5.7
+      }
+    },
+    "moon_phase_pct": 99.9,
+    "moon_phase_label": "Full Moon",
+    "aspects": [
+      "Sun opposition Moon",
+      "Sun square Jupiter",
+      "Sun conjunction Saturn",
+      "Moon square Jupiter",
+      "Moon opposition Saturn"
+    ]
+  },
+  "weather": {
+    "temp": 24.0,
+    "humidity": 78.0,
+    "condition": "Partly cloudy"
+  },
+  "events": "A hand reaches for the thermostat while the house splits open.\n\nEverything is reviewed on a case-by-case basis, which means nothing is certain and everything is permitted.\n\nThe body stretches toward stillness in a room surrounded by sirens.\n\nCold pushes north into south, money floats above its own gravity, and someone draws a circle around who belongs.\n\nA small crew loops the dead rock one more time, rehearsing wonder against the hum of slow collapse.",
+  "context_felt": "A jaw clenches around something too large to swallow — the belly full, the hunger still screaming.\n\nTwo pressures face each other across a taut wire, each one a mirror flooded with light it cannot hold.\n\nThe warm air thickens like a held breath before a door opens onto stone."
+}
