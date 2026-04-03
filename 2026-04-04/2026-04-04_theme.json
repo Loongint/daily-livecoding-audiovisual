@@ -1,0 +1,58 @@
+{
+  "chinese_title": "滞准期",
+  "english_title": "Conditional Hold State",
+  "theme_note": "Suspended luminance distending under bureaucratic weight; time thickens, gates flicker between grant and refusal.",
+  "hexagram": {
+    "number": 29,
+    "chinese_name": "坎",
+    "pinyin": "kǎn",
+    "english_name": "The Abysmal",
+    "judgment_hint": "water, danger, depth"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "degree": 14.2
+      },
+      "Moon": {
+        "sign": "Scorpio",
+        "degree": 6.1
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "degree": 16.5
+      },
+      "Venus": {
+        "sign": "Taurus",
+        "degree": 5.3
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "degree": 25.5
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "degree": 16.0
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "degree": 5.9
+      }
+    },
+    "moon_phase_pct": 96.3,
+    "moon_phase_label": "Waning Gibbous",
+    "aspects": [
+      "Sun square Jupiter",
+      "Moon opposition Venus",
+      "Mercury trine Jupiter"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 94.0,
+    "condition": "Partly cloudy"
+  },
+  "events": "**System State: April 2026**\n\nA gate that was closed now opens only by petition — access becomes a geometry of conditional approval.\n\nThe body drifts weightless, studied for its decay, while below, the ground tightens its eligibility for care.\n\nOld circuits of empire trace the globe again, not by sail but by semiconductor, each chip a small negotiation of sovereignty.\n\nThe atmosphere holds two truths at once: the furnace restoked, the garden newly planted beside it.\n\nEverywhere, the sensation of waiting — for numbers, for clearance, for the five years to pass — as if time itself has become a means of control.",
+  "context_felt": "A bloated brightness refusing to set — the body holds more water than it can name.\n\nPressure without puncture, the deep fold doubling under itself like a river swallowing its own mouth.\n\nEverything almost-spoken hangs in the warm fog, distending."
+}
