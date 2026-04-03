@@ -1,0 +1,46 @@
+{
+  "audio_to_visual": [
+    {
+      "osc": "/audio/amplitude",
+      "uniform": "u_time",
+      "type": "float"
+    },
+    {
+      "osc": "/audio/resolution",
+      "uniform": "u_resolution",
+      "type": "vec3"
+    }
+  ],
+  "visual_to_audio": [
+    {
+      "feature": "brightness",
+      "osc": "/visual/brightness",
+      "sc_var": "~brightness"
+    },
+    {
+      "feature": "hue",
+      "osc": "/visual/hue",
+      "sc_var": "~hue"
+    },
+    {
+      "feature": "saturation",
+      "osc": "/visual/saturation",
+      "sc_var": "~saturation"
+    },
+    {
+      "feature": "complexity",
+      "osc": "/visual/complexity",
+      "sc_var": "~complexity"
+    },
+    {
+      "feature": "motion",
+      "osc": "/visual/motion",
+      "sc_var": "~motion"
+    },
+    {
+      "feature": "color",
+      "osc": "/visual/color",
+      "sc_var": "~color"
+    }
+  ]
+}

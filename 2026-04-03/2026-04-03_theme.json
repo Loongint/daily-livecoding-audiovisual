@@ -1,0 +1,59 @@
+{
+  "chinese_title": "准入阈 / Access Threshold",
+  "english_title": "Permission Structure Collapse",
+  "theme_note": "Rigid light partitions soften under excess load; a surface vibrates between gate and membrane",
+  "hexagram": {
+    "number": 28,
+    "chinese_name": "大过",
+    "pinyin": "dà guò",
+    "english_name": "Preponderance of the Great",
+    "judgment_hint": "excess, lake, wind"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "degree": 13.3
+      },
+      "Moon": {
+        "sign": "Libra",
+        "degree": 23.7
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "degree": 15.5
+      },
+      "Venus": {
+        "sign": "Taurus",
+        "degree": 4.1
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "degree": 24.7
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "degree": 15.9
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "degree": 5.8
+      }
+    },
+    "moon_phase_pct": 99.1,
+    "moon_phase_label": "Full Moon",
+    "aspects": [
+      "Sun square Jupiter",
+      "Sun conjunction Saturn",
+      "Moon square Jupiter",
+      "Mercury trine Jupiter"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 94.0,
+    "condition": "Partly cloudy"
+  },
+  "events": "A machine deciding who may receive light, and who must apply for it.\n\nThe body drifts in weightlessness while the ground beneath the stationary burns.\n\nSomething rebounds — not recovery, just the reflex of a system flinching back toward its own shape.\n\nGates are drawn around the garden: who may eat, who may stay, who was never soil to begin with.\n\nThe weather has no enemy and no negotiation, only arrival.",
+  "context_felt": "A beam bowing under brightness it was never meant to hold this long.\n\nThe air thickens into a skin — everything ripe past the moment of release, refusing to fall.\n\nTwo equal weights pressing from opposite ends of a plank balanced on nothing."
+}
