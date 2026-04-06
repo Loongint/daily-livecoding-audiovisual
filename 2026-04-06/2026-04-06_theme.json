@@ -1,0 +1,59 @@
+{
+  "chinese_title": "阈值审批",
+  "english_title": "Clearance Pending State",
+  "theme_note": "Dense static field compressing inward, permissions flickering at half-legibility, time thickening without release.",
+  "hexagram": {
+    "number": 31,
+    "chinese_name": "咸",
+    "pinyin": "xián",
+    "english_name": "Influence",
+    "judgment_hint": "attraction, lake, mountain"
+  },
+  "astrology": {
+    "planets": {
+      "Sun": {
+        "sign": "Aries",
+        "degree": 16.2
+      },
+      "Moon": {
+        "sign": "Sagittarius",
+        "degree": 0.2
+      },
+      "Mercury": {
+        "sign": "Pisces",
+        "degree": 18.5
+      },
+      "Venus": {
+        "sign": "Taurus",
+        "degree": 7.8
+      },
+      "Mars": {
+        "sign": "Pisces",
+        "degree": 27.0
+      },
+      "Jupiter": {
+        "sign": "Cancer",
+        "degree": 16.1
+      },
+      "Saturn": {
+        "sign": "Aries",
+        "degree": 6.2
+      }
+    },
+    "moon_phase_pct": 85.9,
+    "moon_phase_label": "Waning Gibbous",
+    "aspects": [
+      "Sun square Jupiter",
+      "Moon trine Mars",
+      "Moon trine Saturn",
+      "Mercury trine Jupiter"
+    ]
+  },
+  "weather": {
+    "temp": 25.0,
+    "humidity": 94.0,
+    "condition": "Overcast"
+  },
+  "events": "**the hum beneath the threshold**\n\nA gate narrows while pretending to open — every approval now a held breath, every crossing a calculation of worth.\n\nThe price of warmth rises like a tide against the ledge where people stand counting what remains.\n\nHalf the grid drinks from the sun and still the old engine burns beneath, unwilling to cool.\n\nRooms full of futures — chips, orbits, ballots — each one a door that locks differently depending on who is watching.\n\nThe archive celebrates what was made freely while the present rehearses new terms of admission.",
+  "context_felt": "A damp pull between two masses, one rising, one pooling still — the skin hums before the hand arrives.\n\nSwollen light pressing outward against its own fullness, the body wanting to leap while the bones say *hold*.\n\nEverything magnetic and overly close, like thunder that never breaks, just thickens the room."
+}
